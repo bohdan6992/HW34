@@ -20,12 +20,17 @@ const splitStringAndGetDAta = (stringToSplit, separator) => {
     let priseUAH = element.split('<span data-currency="UAH">').pop().split('</span>')
     let year = element.split('data-year="').pop().split('" data-expire-date')
 
-    console.log(model[0])
-    console.log(priseUSD[0])
-    console.log(priseUAH[0])
-    console.log(year[0])
+    let car = {
+      model: model[0],
+      priseUSD: priseUSD[0],
+      priseUAH: priseUAH[0],
+      year: year[0]
+    };
+
+    console.log(car)
   });
 };
+
 
 const server = http.createServer((req, res) => {
 
@@ -35,7 +40,7 @@ const server = http.createServer((req, res) => {
     
     getHTML(body);
     var space = '<div class="hide debug1504 searchItem_v4"';
-    plitStringAndGetDAta(str, space);
+    splitStringAndGetDAta(str, space);
 
     res.setHeader("Content-Type", "text/html");
     res.end(`
